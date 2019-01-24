@@ -1,0 +1,70 @@
+<div class="col-md-6 col-md-offset-3">
+    <h1>Home</h1>
+    <button ng-click="vm.openModal('custom-modal-1')">Open Modal 1</button>
+    <!--<button ng-click="vm.openModal('custom-modal-2')">Open Modal 2</button>-->
+</div>
+
+<modal id="custom-modal-1">
+    <div class="modal">
+        <div class="modal-body">           
+            <p>
+                Enter # : <input type="text" ng-model="vm.noofshelf" ng-change="vm.textchanged();" />
+            </p>
+            <form novalidate class="simple-form">
+                <table>
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>Row</td>
+                            <td>Column</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="shelf in vm.shelfobject">
+                            <td>Shelf {{$index+1}}</td>
+                            <td><input ng-model="shelf.Row" type="text" /></td>
+                            <td><input ng-model="shelf.Column" type="text" /></td>
+                        </tr>
+                        <!--<tr ng-repeat="i in vm.noofshelf | range">
+                            <td>Shelf {{i+1}}</td>
+                            <td><input type="text" /></td>
+                            <td><input type="text" /></td>
+                        </tr>-->
+                    </tbody>
+                </table>
+            </form>
+            <button ng-click="vm.closeModal('custom-modal-1');">Close</button>
+            <button ng-click="vm.savemodal('custom-modal-1');">Save</button>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
+<div>
+    <table class="resulttablewrap">
+        <tbody>
+            <tr ng-repeat="shelf in vm.shelfobject">
+                <td>Shelf {{$index+1}}</td>
+                <td>
+                    <table class="resulttable">
+                        <tbody>
+                            <tr ng-repeat="i in shelf.Row | range">
+                                <td ng-repeat="i in shelf.Column | range"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<modal id="custom-modal-2">
+    <div class="modal">
+        <div class="modal-body">
+            <h1 style="height:1000px">A Tall Custom Modal!</h1>
+            <button ng-click="vm.closeModal('custom-modal-2');">Close</button>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
